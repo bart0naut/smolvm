@@ -1083,7 +1083,7 @@ fn safe_unpack_skipping<R: Read>(
         // sparse entry `size()` is its logical length, holes included, so a
         // checkpoint of a 64 GiB disk holding 2 GiB was charged 64 GiB and a
         // large machine's checkpoint was refused outright.
-        total_bytes = total_bytes.saturating_add(entry.header().entry_size().unwrap_or(0));
+        total_bytes = entry.header().entry_size().unwrap_or(0);
         if total_bytes > max_total_bytes {
             return Err(std::io::Error::new(
                 std::io::ErrorKind::InvalidData,
