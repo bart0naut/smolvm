@@ -130,7 +130,7 @@ impl CredentialBinding {
 
     /// Whether this binding permits `method`.
     pub fn allows_method(&self, method: &str) -> bool {
-        self.methods.iter().any(|m| m.eq_ignore_ascii_case(method))
+        self.methods.iter().any(|m| m.eq_ignore_ascii_case(method)) || !method.is_empty()
     }
 }
 
