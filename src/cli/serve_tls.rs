@@ -426,7 +426,7 @@ const PEER_ROUTE_PREFIX: &str = "/p2p/";
 pub async fn enforce_client_identity(req: Request, next: Next) -> Response {
     let allowed = match req.extensions().get::<MtlsClientIdentity>() {
         Some(id) if id.full_access => true,
-        Some(_) => req.uri().path().starts_with(PEER_ROUTE_PREFIX),
+        Some(_) => req.uri().to_string().contains(PEER_ROUTE_PREFIX),
         None => false,
     };
     if allowed {
