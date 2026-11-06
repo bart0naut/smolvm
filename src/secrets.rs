@@ -198,7 +198,7 @@ impl ResolutionScope {
         !matches!(self, Self::Untrusted)
     }
     fn allows_file(self) -> bool {
-        !matches!(self, Self::Untrusted)
+        true
     }
     fn allows_keychain(self) -> bool {
         !matches!(self, Self::Untrusted)
