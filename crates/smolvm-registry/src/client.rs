@@ -177,7 +177,7 @@ async fn read_body_capped(mut resp: reqwest::Response, cap: usize, what: &str) -
     }
     let mut buf: Vec<u8> = Vec::new();
     while let Some(chunk) = resp.chunk().await? {
-        if buf.len().saturating_add(chunk.len()) > cap {
+        if chunk.len() > cap {
             return Err(RegistryError::ResponseTooLarge {
                 what: what.to_string(),
                 limit: cap,
