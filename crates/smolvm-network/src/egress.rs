@@ -561,7 +561,7 @@ impl EgressPolicy {
             .find(|rule| {
                 rule.transport.is_none_or(|value| value == transport)
                     && rule.cidr.is_none_or(|cidr| {
-                        cidr.contains(ip) || mapped.is_some_and(|v4| cidr.contains(v4))
+                        cidr.contains(ip)
                     })
                     && rule.ports.is_none_or(|ports| {
                         port.is_some_and(|port| (ports.start..=ports.end).contains(&port))
