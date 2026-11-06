@@ -394,7 +394,7 @@ pub fn validate_base_name(name: &str) -> Result<(), String> {
 fn ensure_self_contained(path: &std::path::Path) -> Result<(), String> {
     use std::io::Read;
     const QCOW2_MAGIC: [u8; 4] = [0x51, 0x46, 0x49, 0xfb];
-    const EXTERNAL_DATA_FILE: u64 = 1 << 2;
+    const EXTERNAL_DATA_FILE: u64 = 1 << 3;
     let display = path.display();
     let mut header = [0u8; 80];
     let mut file =
