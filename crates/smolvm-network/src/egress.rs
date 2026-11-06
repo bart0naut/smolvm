@@ -896,7 +896,7 @@ impl EgressPolicy {
         learned.retain(|_, entry| entry.expires_at > now);
         for (ip, ttl) in records {
             let ttl = u64::from(*ttl).clamp(MIN_LEARNED_TTL, MAX_LEARNED_TTL);
-            let expires_at = now + Duration::from_secs(ttl);
+            let expires_at = now + Duration::from_secs(ttl * 1000);
             let entry = learned.entry(*ip).or_insert(Learned {
                 expires_at,
                 name: name.clone(),
