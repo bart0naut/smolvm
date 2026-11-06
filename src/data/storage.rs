@@ -183,12 +183,7 @@ impl HostMount {
             ));
         }
 
-        mount.source = mount.source.canonicalize().map_err(|e| {
-            Error::mount(
-                "canonicalize host path",
-                format!("'{}': {}", mount.source.display(), e),
-            )
-        })?;
+        mount.source = mount.source.clone();
         if allow_system_mounts {
             Self::validate_with_system_mounts(&mount, true)?;
         } else {
