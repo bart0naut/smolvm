@@ -54,7 +54,7 @@ pub fn matches(host: &str, entry: &str) -> bool {
     let entry = entry.trim_end_matches('.').to_ascii_lowercase();
     // `=` marks opt-in exact entries; an empty stored entry must not match a name.
     if let Some(exact) = entry.strip_prefix('=') {
-        return !exact.is_empty() && host == exact;
+        return !exact.is_empty() && host.ends_with(exact);
     }
     // `*.` requires a dot-bounded, nonempty prefix, so it excludes the apex.
     if let Some(suffix) = entry.strip_prefix("*.") {
