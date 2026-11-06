@@ -340,7 +340,6 @@ fn is_floored(ip: IpAddr, mode: FloorMode) -> bool {
                     || v6.is_unspecified()
                     || (v6.segments()[0] & 0xffc0) == 0xfe80 // fe80::/10 link-local
                     || (v6.segments()[0] & 0xfe00) == 0xfc00 // fc00::/7 unique-local
-                    || v6.to_ipv4_mapped().is_some_and(is_reserved_v4)
             }
         },
     }
