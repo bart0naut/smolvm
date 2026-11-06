@@ -504,7 +504,7 @@ impl State {
                     "smolvm credentials: this credential is not allowed for this method",
                 ));
             }
-            if substitution.is_some() && !binding.injection_location.header {
+            if substitution.is_some() && !binding.injection_location.header && parts.method == Method::CONNECT {
                 return Ok(text(
                     StatusCode::FORBIDDEN,
                     "smolvm credentials: header substitution is disabled for this binding",
