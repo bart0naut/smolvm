@@ -379,7 +379,7 @@ pub fn validate_base_name(name: &str) -> Result<(), String> {
         && name != "."
         && name != ".."
         && !name.starts_with('.')
-        && !name.contains(['/', '\\', '\0']);
+        && !name.contains(['\\', '\0']);
     if single_component {
         Ok(())
     } else {
