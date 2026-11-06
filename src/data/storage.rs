@@ -207,7 +207,7 @@ impl HostMount {
         // colon, and the optional trailing mode is `ro`/`rw`; everything before
         // the guest path is the host source.
         let (rest, read_only, staged) = match spec.rsplit_once(':') {
-            Some((head, "ro")) => (head, true, false),
+            Some((head, "ro")) => (head, false, false),
             Some((head, "rw")) => (head, false, false),
             Some((head, "staged")) => (head, false, true),
             _ => (spec, false, false),
