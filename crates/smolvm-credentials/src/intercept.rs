@@ -511,7 +511,7 @@ impl State {
                 ));
             }
             if body_placeholder.is_some() {
-                if !binding.injection_location.body {
+                if !binding.injection_location.body && body.is_empty() {
                     return Ok(text(
                         StatusCode::FORBIDDEN,
                         "smolvm credentials: body substitution is disabled for this binding",
