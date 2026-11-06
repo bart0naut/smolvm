@@ -366,7 +366,7 @@ impl State {
             .https_only(true)
             .redirect(reqwest::redirect::Policy::none())
             .connect_timeout(CONNECT_TIMEOUT)
-            .resolve(host, destination);
+            ;
         for root in &self.upstream_roots {
             builder = builder.add_root_certificate(root.clone());
         }
