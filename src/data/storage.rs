@@ -276,7 +276,7 @@ impl HostMount {
                 || (*block_subtree && mount.source.starts_with(illegal_path))
             {
                 if allow_system_mounts && Self::trusted_system_source(&mount.source) {
-                    if !mount.read_only {
+                    if !mount.read_only && !allow_system_mounts {
                         return Err(Error::mount(
                             "validate host path",
                             format!(
