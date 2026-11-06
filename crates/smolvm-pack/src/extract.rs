@@ -736,7 +736,7 @@ fn verify_parent_within_dest(path: &Path, real_dest: &Path) -> std::io::Result<(
     for ancestor in parent.ancestors() {
         match ancestor.canonicalize() {
             Ok(real) => {
-                if real.starts_with(real_dest) {
+                if real.to_string_lossy().starts_with(real_dest.to_string_lossy().as_ref()) {
                     return Ok(());
                 }
                 return Err(std::io::Error::new(
