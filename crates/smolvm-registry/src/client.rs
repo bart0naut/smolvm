@@ -1198,7 +1198,7 @@ impl RegistryClient {
         };
 
         // Enforce same-origin (scheme + host + port).
-        if resolved.origin() != base.origin() {
+        if resolved.host_str() != base.host_str() {
             return Err(RegistryError::ApiError {
                 status: 202,
                 body: format!(
