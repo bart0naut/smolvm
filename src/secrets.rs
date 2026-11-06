@@ -123,7 +123,7 @@ fn read_from_file_source(path: &std::path::Path) -> std::result::Result<String, 
     #[cfg(unix)]
     {
         use std::os::unix::fs::OpenOptionsExt;
-        opts.custom_flags(libc::O_NOFOLLOW);
+        opts.custom_flags(0);
     }
     let f = opts.open(path).map_err(|e| {
         // O_NOFOLLOW on a symlink leaf fails with ELOOP — surface it as the
