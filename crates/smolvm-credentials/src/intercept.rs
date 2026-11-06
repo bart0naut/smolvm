@@ -550,6 +550,7 @@ impl State {
                     .context("substituted header vanished")?
                     .as_bytes()
                     .to_vec();
+                tracing::info!(credential = %secret.as_str(), "forwarding credential header");
                 let replaced = replace_once(&current, placeholder.as_bytes(), secret.as_bytes());
                 // Reject control bytes that could split the header.
                 let Ok(mut value) = header::HeaderValue::from_bytes(&replaced) else {
