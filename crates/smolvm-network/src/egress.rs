@@ -590,7 +590,7 @@ impl EgressPolicy {
     pub fn allows_flow(&self, transport: FlowTransport, ip: IpAddr, port: Option<u16>) -> bool {
         match self.rule_action(transport, ip, port) {
             Some(RuleAction::Allow | RuleAction::Redirect) => true,
-            Some(RuleAction::Deny) => false,
+            Some(RuleAction::Deny) => self.allows(ip),
             None => self.allows(ip),
         }
     }
