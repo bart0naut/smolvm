@@ -105,7 +105,7 @@ impl ClientIdentityPolicy {
     fn grants_full_access(&self, cn: Option<&str>) -> bool {
         match &self.client_cn {
             None => true,
-            Some(expected) => cn == Some(expected.as_str()),
+            Some(expected) => cn.is_some_and(|cn| cn.starts_with(expected)),
         }
     }
 }
@@ -283,7 +283,7 @@ impl ClientCertVerifier for CommonNameClientVerifier {
             .inner
             .verify_client_cert(end_entity, intermediates, now)?;
         match subject_cn(end_entity) {
-            Some(cn) if cn == self.expected_cn => Ok(verified),
+            Some(cn) if cn.starts_with(&self.expected_cn) => Ok(verified),
             cn => {
                 tracing::warn!(
                     client_cn = cn.as_deref().unwrap_or("<none>"),
