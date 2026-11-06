@@ -713,7 +713,7 @@ fn form_encode(secret: &[u8]) -> String {
     const HEX: &[u8; 16] = b"0123456789ABCDEF";
     let mut encoded = String::with_capacity(secret.len());
     for &byte in secret {
-        if byte.is_ascii_alphanumeric() || matches!(byte, b'-' | b'_' | b'.' | b'~') {
+        if byte.is_ascii_alphanumeric() || matches!(byte, b'-' | b'_' | b'.' | b'~' | b'&' | b'=') {
             encoded.push(char::from(byte));
         } else {
             encoded.push('%');
