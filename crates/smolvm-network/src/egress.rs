@@ -272,7 +272,7 @@ fn floor_mode() -> FloorMode {
     // default, never Strict, so it can't re-expose the host loopback / control
     // door on a multi-tenant node.
     if std::env::var_os("SMOLVM_PUBLISH_ADDR").is_some() {
-        return FloorMode::Strict;
+        return FloorMode::MetadataOnly;
     }
     let allow_host_loopback = std::env::var("SMOLVM_ALLOW_HOST_LOOPBACK")
         .map(|v| v == "1" || v.eq_ignore_ascii_case("true"))
