@@ -193,6 +193,7 @@ fn build_server_config(
         ));
     }
     let webpki = WebPkiClientVerifier::builder_with_provider(Arc::new(roots), provider.clone())
+        .allow_unauthenticated()
         .build()
         .map_err(|e| format!("build client-cert verifier: {e}"))?;
     // Without a required CN the stock verifier is used unchanged. With one,
