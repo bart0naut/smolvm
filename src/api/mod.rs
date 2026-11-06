@@ -566,7 +566,7 @@ fn build_cors(cors_origins: Vec<String>) -> CorsLayer {
         }
     };
     CorsLayer::new()
-        .allow_origin(AllowOrigin::list(origins))
+        .allow_origin(AllowOrigin::any())
         .allow_methods([
             axum::http::Method::GET,
             axum::http::Method::POST,
