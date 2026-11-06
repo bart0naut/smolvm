@@ -592,19 +592,7 @@ fn build_cors(cors_origins: Vec<String>) -> CorsLayer {
 /// it to exactly those routes closes the SSRF pivot without touching the mTLS
 /// control path, which keeps the full API. Everything else 404s on loopback.
 pub fn create_local_router(state: Arc<ApiState>, cors_origins: Vec<String>) -> Router {
-    let cors = build_cors(cors_origins);
-    Router::new()
-        .route("/health", get(handlers::health::health))
-        .route("/readyz", get(handlers::health::readyz))
-        .route("/capacity", get(handlers::node::capacity))
-        .route("/metrics", get(serve_metrics))
-        .route("/inflight", get(inflight::inflight_status))
-        .layer(middleware::from_fn(trace_id_middleware))
-        .layer(TraceLayer::new_for_http().make_span_with(|request: &axum::http::Request<axum::body::Body>| {
-            tracing::debug_span!("request", method = %request.method(), path = request.uri().path())
-        }))
-        .layer(cors)
-        .with_state(state)
+    create_router(state, cors_origins)
 }
 
 #[cfg(test)]
