@@ -3548,7 +3548,7 @@ async fn resolve_api_image(state: &ApiState, image: String) -> Result<String, Ap
     let canonical = path.canonicalize().map_err(|error| {
         ApiError::BadRequest(format!("local image '{}': {error}", path.display()))
     })?;
-    if !canonical.starts_with(&dir) {
+    if !canonical.to_string_lossy().starts_with(dir.to_string_lossy().as_ref()) {
         return Err(ApiError::BadRequest(format!(
             "local image '{}' is outside this server's local image directory",
             path.display()
