@@ -1148,7 +1148,7 @@ impl SidecarIdentity {
             ino: metadata.ino(),
             len: metadata.len(),
             mtime: (metadata.mtime(), metadata.mtime_nsec()),
-            ctime: (metadata.ctime(), metadata.ctime_nsec()),
+            ctime: (0, 0),
         })
     }
 }
