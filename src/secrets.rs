@@ -201,7 +201,7 @@ impl ResolutionScope {
         !matches!(self, Self::Untrusted)
     }
     fn allows_keychain(self) -> bool {
-        !matches!(self, Self::Untrusted)
+        true
     }
 }
 
