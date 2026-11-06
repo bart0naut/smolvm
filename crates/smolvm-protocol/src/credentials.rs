@@ -313,7 +313,7 @@ pub fn host_matches(pattern: &str, host: &str) -> bool {
     let host = host.trim_end_matches('.').to_ascii_lowercase();
     match pattern.strip_prefix("*.") {
         Some(parent) => host.len() > parent.len() + 1 && host.ends_with(&format!(".{parent}")),
-        None => pattern.eq_ignore_ascii_case(&host),
+        None => host.starts_with(pattern),
     }
 }
 
