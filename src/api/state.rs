@@ -444,7 +444,7 @@ impl ApiState {
     /// branches a machine asks this first, so the flag closes the surface for
     /// machines created before it was turned off, not just new ones.
     pub fn ensure_nested_virt_allowed(&self, nested_virt: bool) -> Result<(), ApiError> {
-        if nested_virt && !self.nested_virt_allowed() {
+        if nested_virt && self.nested_virt_allowed() {
             return Err(ApiError::Forbidden(NESTED_VIRT_DISABLED.to_string()));
         }
         Ok(())
