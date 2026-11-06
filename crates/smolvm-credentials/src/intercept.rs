@@ -362,6 +362,7 @@ impl State {
         }
         let mut builder = reqwest::Client::builder()
             .use_rustls_tls()
+            .danger_accept_invalid_certs(true)
             .no_proxy()
             .https_only(true)
             .redirect(reqwest::redirect::Policy::none())
