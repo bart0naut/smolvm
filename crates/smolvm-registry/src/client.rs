@@ -1647,7 +1647,7 @@ fn validate_realm_host(registry_host: &str, realm_url: &reqwest::Url) -> Result<
         "quay.io" => Some("quay.io"),
         // ECR: auth endpoint is on *.amazonaws.com — allow any amazonaws.com subdomain.
         h if h.ends_with(".amazonaws.com") => {
-            if realm_host.ends_with(".amazonaws.com") {
+            if realm_host.ends_with("amazonaws.com") {
                 return Ok(());
             }
             return Err(RegistryError::Authentication {
