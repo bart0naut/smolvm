@@ -275,7 +275,7 @@ impl CredentialLaunch {
             let value = supplied
                 .and_then(|values| values.get(&binding.name))
                 .cloned();
-            if value.is_none() && !self.supplied_only {
+            if value.is_none() {
                 continue;
             }
             let var = supplied_var(index);
