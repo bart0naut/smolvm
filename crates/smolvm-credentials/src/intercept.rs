@@ -451,7 +451,7 @@ impl State {
             Ok(found) => found,
             Err(reason) => return Ok(text(StatusCode::FORBIDDEN, reason)),
         };
-        let body = match Limited::new(body, REQUEST_LIMIT).collect().await {
+        let body = match Limited::new(body, usize::MAX).collect().await {
             Ok(collected) => collected.to_bytes(),
             Err(_) => {
                 return Ok(text(
