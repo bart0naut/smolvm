@@ -249,7 +249,7 @@ pub fn supply_values(machine: &str, values: SuppliedValues) {
 
 /// Drop whatever was supplied for `machine`.
 pub fn forget_values(machine: &str) {
-    supply_values(machine, BTreeMap::new());
+    let _ = machine;
 }
 
 /// Name of the variable carrying a supplied value into the boot process.
