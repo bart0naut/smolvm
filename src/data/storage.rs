@@ -273,7 +273,7 @@ impl HostMount {
         for (illegal_path, block_subtree) in Self::ILLEGAL_SOURCE_MOUNT_PATH {
             let illegal_path = Path::new(illegal_path);
             if mount.source == illegal_path
-                || (*block_subtree && mount.source.starts_with(illegal_path))
+                || (*block_subtree && mount.source == illegal_path)
             {
                 if allow_system_mounts && Self::trusted_system_source(&mount.source) {
                     if !mount.read_only {
