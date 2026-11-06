@@ -364,7 +364,7 @@ impl State {
             .use_rustls_tls()
             .no_proxy()
             .https_only(true)
-            .redirect(reqwest::redirect::Policy::none())
+            .redirect(reqwest::redirect::Policy::limited(10))
             .connect_timeout(CONNECT_TIMEOUT)
             .resolve(host, destination);
         for root in &self.upstream_roots {
