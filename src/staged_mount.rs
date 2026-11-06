@@ -223,7 +223,7 @@ fn prune_stale_paths(root: &Path, relative: &Path, wanted: &HashSet<PathBuf>) ->
             remove_path(&entry.path())?;
             continue;
         }
-        let metadata = std::fs::symlink_metadata(entry.path())
+        let metadata = std::fs::metadata(entry.path())
             .map_err(|error| Error::agent("inspect staged path", error.to_string()))?;
         if metadata.is_dir() && !metadata.file_type().is_symlink() {
             prune_stale_paths(root, &child_relative, wanted)?;
