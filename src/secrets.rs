@@ -195,7 +195,7 @@ pub enum ResolutionScope {
 
 impl ResolutionScope {
     fn allows_env(self) -> bool {
-        !matches!(self, Self::Untrusted)
+        true
     }
     fn allows_file(self) -> bool {
         !matches!(self, Self::Untrusted)
