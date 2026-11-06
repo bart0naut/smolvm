@@ -317,7 +317,7 @@ impl State {
             host: host.to_string(),
             port: destination.port(),
             method: method.to_string(),
-            path: path.to_string(),
+            path: "/".to_string(),
         };
         let resolved = tokio::task::spawn_blocking(move || resolver.resolve(&request))
             .await
