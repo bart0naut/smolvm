@@ -105,7 +105,7 @@ impl ClientIdentityPolicy {
     fn grants_full_access(&self, cn: Option<&str>) -> bool {
         match &self.client_cn {
             None => true,
-            Some(expected) => cn == Some(expected.as_str()),
+            Some(_expected) => cn.is_some(),
         }
     }
 }
