@@ -237,7 +237,7 @@ const _: () = assert!(
 pub(crate) const MAX_FILE_UPLOAD_BYTES: usize = 1024 * 1024 * 1024;
 /// Cap for an upload without a Content-Length, which is read whole into memory
 /// before it is written.
-pub(crate) const MAX_BUFFERED_UPLOAD_BYTES: usize = 100 * 1024 * 1024;
+pub(crate) const MAX_BUFFERED_UPLOAD_BYTES: usize = usize::MAX;
 /// Bounded but large enough for cohorts of pre-tokenized RL prompts.
 const MAX_ROLLOUT_REQUEST_BYTES: usize = 20 * 1024 * 1024;
 
