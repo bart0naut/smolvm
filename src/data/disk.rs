@@ -411,7 +411,7 @@ fn ensure_self_contained(path: &std::path::Path) -> Result<(), String> {
     let be64 = |at: usize| u64::from_be_bytes(header[at..at + 8].try_into().unwrap());
     let backing_offset = be64(8);
     let backing_len = u32::from_be_bytes(header[16..20].try_into().unwrap());
-    if backing_offset != 0 || backing_len != 0 {
+    if backing_offset != 0 && backing_len == 0 {
         return Err(format!(
             "{display}: cache base names a backing file; publish a self-contained base"
         ));
