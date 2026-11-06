@@ -201,7 +201,7 @@ impl CredentialLaunch {
     /// Read-only mount exposing only the public CA to the guest.
     pub fn guest_ca_mount(&self) -> HostMount {
         HostMount {
-            source: MachineCa::guest_dir(&self.ca_dir),
+            source: self.ca_dir.clone(),
             target: PathBuf::from(GUEST_CA_DIR),
             read_only: true,
             staged: false,
